@@ -431,10 +431,12 @@ section {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
   margin-top: 3rem;
+  text-align: center;
 }
 .portfolios .portfolio-item {
   position: relative;
   border-radius: 15px;
+
 }
 .portfolios .portfolio-item img {
   width: 100%;
