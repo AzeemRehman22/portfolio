@@ -42,4 +42,32 @@ function PageTransitions(){
     })
 }
 
+function handleIntersection(entries, observer) {
+    entries.forEach(entry => {
+        const video = entry.target.querySelector('video');
+
+        if (entry.isIntersecting) {
+            if (video.paused) {
+                video.play();
+            }
+        } else {
+            if (!video.paused) {
+                video.pause();
+                //video.currentTime = 0;
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const videoContainers = document.querySelectorAll('.portfolio-item');
+
+    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+
+    videoContainers.forEach(container => {
+        observer.observe(container);
+    });
+});
+
+
 PageTransitions();
