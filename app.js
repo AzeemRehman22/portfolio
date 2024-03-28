@@ -70,4 +70,57 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function startAnimation(containerId) {
+    const container = document.getElementById(containerId);
+
+    if (container) {
+        const overlay = container.querySelector('.overlay');
+        const video = container.querySelector('video');
+
+        if (overlay && video) {
+           
+            overlay.style.animation = 'falling 1.5s forwards';
+            video.play();
+
+
+            setTimeout(function () {
+                overlay.style.display = 'none';
+                video.controls = true;
+            }, 1500);
+
+          
+        }
+    }
+
+}
+
+function restartAnimation(containerId) {
+    const container = document.getElementById(containerId);
+
+    if (container) {
+        const overlay = container.querySelector('.overlay');
+        const video = container.querySelector('video');
+
+        if (overlay && video) {
+
+            if (myContainers.includes(containerId.toString())) {
+                myContainers.splice(myContainers.indexOf(containerId.toString()), 1);
+
+                overlay.style.display = 'none'; // Hide overlay
+            overlay.style.animation = 'none'; // Clear animation
+            setTimeout(function () {
+                overlay.style.animation = 'falling 1.5s forwards'; // Restart animation
+            }, 10);
+
+                    video.currentTime = 0;
+                    video.pause();
+                    video.controls = false;
+
+            }
+
+
+        }
+    }
+}
+
 PageTransitions();
